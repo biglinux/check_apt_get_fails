@@ -1,5 +1,5 @@
 # check_apt_get_fails
-EN
+ENGLISH
 Check all packages listed in apt-get for dependencies errors.
 Use repository_check.sh for check packages, examples:
 
@@ -14,7 +14,7 @@ Caution: Lot threads is heavy load and use 100% of processor in my test with I7 
 
 repository_check_stop.sh #Easy method for stop all threads.
 
-PT
+PORTUGUÊS
 Verifica todos os pacotes disponíveis do apt-get se possuem dependências quebradas.
 Use repository_check.sh para verificar os pacotes, exemplos:
 
