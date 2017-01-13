@@ -1,6 +1,7 @@
 # Check apt-get fails
 
-ENGLISH
+#ENGLISH
+
 Files replaces for just command:
 LANG=C apt-get --dry-run install $(apt-cache pkgnames) | grep "it is not installable" | awk '{print $1}' | grep -v ":$"
 
@@ -14,7 +15,7 @@ In my test packages libghc show lot and lot errors, and i'm use grep for filter 
 LANG=C apt-get --dry-run install $(apt-cache pkgnames | grep -v Viber) | grep "it is not installable" | awk '{print $1}' | grep -v ":$" | grep -v libghc
 
 
-PORTUGUÊS
+#PORTUGUÊS
 
 Os arquivos aqui foram substituídos apenas por um comando:
 LANG=C apt-get --dry-run install $(apt-cache pkgnames) | grep "it is not installable" | awk '{print $1}' | grep -v ":$"
