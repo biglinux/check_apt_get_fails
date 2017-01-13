@@ -1,35 +1,29 @@
 # check_apt_get_fails
 
 ENGLISH
+Files replaces for just command:
+LANG=C apt-get --dry-run install $(apt-cache pkgnames) | grep "it is not installable" | awk '{print $1}' | grep -v ":$"
 
-Check all packages listed in apt-get for dependencies errors.
-Use repository_check.sh for check packages, examples:
+If show error like:
+E: Unable to locate package Viber
 
-repository_check.sh #Check all packages, but just one thread, this mode is very slow, but very low load in processor.
+Use this line, replacing Viber for error showed in your system:
+LANG=C apt-get --dry-run install $(apt-cache pkgnames | grep -v Viber) | grep "it is not installable" | awk '{print $1}' | grep -v ":$"
 
-repository_check.sh a #Check all packages with name started with letter a.
-
-repository_check.sh inkscape #Check just inkscape package.
-
-repository_check_all.sh #This file just run one thread for any letter and number for faster verification for all packages.
-Caution: Lot threads is heavy load and use 100% of processor in my test with I7 4790k processor.
-
-repository_check_stop.sh #Easy method for stop all threads.
-
+In my test packages libghc show lot and lot errors, and i'm use grep for filter and don't show this, see:
+LANG=C apt-get --dry-run install $(apt-cache pkgnames | grep -v Viber) | grep "it is not installable" | awk '{print $1}' | grep -v ":$" | grep -v libghc
 
 
 PORTUGUÊS
 
-Verifica todos os pacotes disponíveis do apt-get se possuem dependências quebradas.
-Use repository_check.sh para verificar os pacotes, exemplos:
+Os arquivos aqui foram substituídos apenas por um comando:
+LANG=C apt-get --dry-run install $(apt-cache pkgnames) | grep "it is not installable" | awk '{print $1}' | grep -v ":$"
 
-repository_check.sh #Verifica todos os pacotes, mas com apenas uma thread, esse modo é lento, mas gera pouca carga no processador, não atrapalhando o uso do sistema.
+Se aparecer um erro como esse:
+E: Unable to locate package Viber
 
-repository_check.sh a #Verifica todos os pacotes iniciados com a letra a.
+Use essa linha substituindo Viber pelo erro que apareceu no seu sistema:
+LANG=C apt-get --dry-run install $(apt-cache pkgnames | grep -v Viber) | grep "it is not installable" | awk '{print $1}' | grep -v ":$"
 
-repository_check.sh inkscape #Verifica apenas o pacote inkscape.
-
-repository_check_all.sh #Esse arquivo inicia uma thread para cada letra e número, isso faz a verificação ser muito mais rápida.
-Cuidado: Muitas threads fazem o uso de processamento ser muito alto, utilizando 100% do teste que fiz com um processador I7 4790k.
-
-repository_check_stop.sh #Método simples para parar todas as threads.
+Nos meus testes apareceram muitos pacotes libghc com erros, então utilizei o grep para filtrar esses pacotes e não exibi-los:
+LANG=C apt-get --dry-run install $(apt-cache pkgnames | grep -v Viber) | grep "it is not installable" | awk '{print $1}' | grep -v ":$" | grep -v libghc
