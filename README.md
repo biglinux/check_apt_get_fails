@@ -1,4 +1,4 @@
-# check_apt_get_fails
+# Check apt-get fails
 
 ENGLISH
 Files replaces for just command:
