@@ -2,29 +2,20 @@
 
 #ENGLISH
 
-Files replaces for just command:
-LANG=C apt-get --dry-run install $(apt-cache pkgnames) | grep "it is not installable" | awk '{print $1}' | grep -v ":$"
 
-If show error like:
-E: Unable to locate package Viber
+#Show all broken packages without libghc and dbg
+LANG=C apt-get --dry-run install $(apt-cache pkgnames | grep -v Viber) | grep -v "^  " | grep 'it is not installable\|is to be installed' | grep -v "Conflicts:" | grep -v "Breaks:" | awk '{print $1}' | grep -v ":$" | grep -v libghc | grep -v '\-dbg'
 
-Use this line, replacing Viber for error showed in your system:
-LANG=C apt-get --dry-run install $(apt-cache pkgnames | grep -v Viber) | grep "it is not installable" | awk '{print $1}' | grep -v ":$"
 
-In my test packages libghc show lot and lot errors, and i'm use grep for filter and don't show this, see:
-LANG=C apt-get --dry-run install $(apt-cache pkgnames | grep -v Viber) | grep "it is not installable" | awk '{print $1}' | grep -v ":$" | grep -v libghc
+#Show really all broken packages
+LANG=C apt-get --dry-run install $(apt-cache pkgnames | grep -v Viber) | grep -v "^  " | grep 'it is not installable\|is to be installed' | grep -v "Conflicts:" | grep -v "Breaks:" | awk '{print $1}' | grep -v ":$"
 
 
 #PORTUGUÊS
 
-Os arquivos aqui foram substituídos apenas por um comando:
-LANG=C apt-get --dry-run install $(apt-cache pkgnames) | grep "it is not installable" | awk '{print $1}' | grep -v ":$"
+#Exibe todos os pacotes quebrados exceto que contranham libghc ou dbg
+LANG=C apt-get --dry-run install $(apt-cache pkgnames | grep -v Viber) | grep -v "^  " | grep 'it is not installable\|is to be installed' | grep -v "Conflicts:" | grep -v "Breaks:" | awk '{print $1}' | grep -v ":$" | grep -v libghc | grep -v '\-dbg'
 
-Se aparecer um erro como esse:
-E: Unable to locate package Viber
 
-Use essa linha substituindo Viber pelo erro que apareceu no seu sistema:
-LANG=C apt-get --dry-run install $(apt-cache pkgnames | grep -v Viber) | grep "it is not installable" | awk '{print $1}' | grep -v ":$"
-
-Nos meus testes apareceram muitos pacotes libghc com erros, então utilizei o grep para filtrar esses pacotes e não exibi-los:
-LANG=C apt-get --dry-run install $(apt-cache pkgnames | grep -v Viber) | grep "it is not installable" | awk '{print $1}' | grep -v ":$" | grep -v libghc
+#Exibe realmente todos os pacote quebrados nos repositórios disponíveis
+LANG=C apt-get --dry-run install $(apt-cache pkgnames | grep -v Viber) | grep -v "^  " | grep 'it is not installable\|is to be installed' | grep -v "Conflicts:" | grep -v "Breaks:" | awk '{print $1}' | grep -v ":$"
